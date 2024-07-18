@@ -1,0 +1,129 @@
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+@import "https://unpkg.com/open-props/buttons.min.css";
+
+
+[data-toggle=tooltip], [tooltip] {
+  position: relative;
+  --tooltip-x: --clientX;
+  --tooltip-y: --clientY;
+  --delay: 1.5s;
+  /* --top: calc((var(--tooltip-y) - 50%) * 2); */
+  /* --left: calc((var(--tooltip-x) - 50%) * 10); */
+  --tmp: clamp(10px, 20px, 30px);
+  --is-top: calc((var(--tooltip-y) - 50) / sqrt((var(--tooltip-y) - 50)*(var(--tooltip-y) - 50)));
+  --is-left: calc((var(--tooltip-x) - 50) / sqrt((var(--tooltip-x) - 50)*(var(--tooltip-x) - 50)));
+  /* --top: calc(var(--is-top) * 100%); */
+  /* --left: calc(var(--is-left) * 100%); */
+  /* --top: clamp(-100%, calc(var(--tooltip-y) - 50%), 100%); */
+  --element-fixed-top: max(var(--element-bottom) * 1px, var(--event-y) * 1px);
+  /* --fixed-left: calc(var(--event-x) * 1px); */
+  --element-fixed-left: max(var(--element-right) * 1px, var(--event-x) * 1px);
+  --fixed-top: min(var(--element-fixed-top) + 20px, var(--window-inner-height) * 1px - 100px);
+  --top: max(0, var(--is-top) * 100%);
+
+  &:after {
+    isolation: isolate;
+    font-size: 1rem;
+    font-weight: 700;
+    opacity: 0;
+    overflow: hidden;
+    visibility: visible;
+    pointer-events: none;
+    /* top: 50%; */
+    /* left: 50%; */
+    top: calc(var(--tooltip--clientY)*1px + 2%);
+    left: calc(var(--tooltip--clientX)*1px + 2%);
+    /* right: 0; */
+    /* bottom: 0; */
+    content: attr(tooltip) !important;
+    color: white;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 3px 5px 3px 5px;
+    /* translate: calc(-50% + var(--left)) calc(-50% + var(--top)); */
+    /* translate: 0 -50%; */
+    /* transform: translate(0, 0); */
+    line-height: normal;
+    scale: 0 1;
+    width: fit-content;
+
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%); */
+    transition:
+      visibility 1s 3s,
+      opacity .3s,
+      left .3s,
+      top 0s,
+      translate .3s,
+      scale .3s;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2), inset 0px 0px 1px rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
+    text-shadow: 0.2px 0px 1px white;
+    backdrop-filter: blur(10px);
+    z-index: 100000;
+  }
+
+  &:hover:after {
+    /* visibility: hidden; */
+    opacity: 1;
+    /* color: transparent; */
+    /* background: transparent; */
+    scale: 1;
+    box-shadow: none;
+    /* translate: calc(var(--left) - 50%) calc(var(--top) - 100%); */
+    /* animation: enableTransition 1s forwards; */
+    /* left: var(--left); */
+    /* top: var(--top); */
+    /* right: 100px; */
+    /* transition: */
+    /*   visibility 1s 3s, */
+    /*   opacity .3s, */
+    /*   translate .3s, */
+    /*   top .3s, */
+    /*   left .1s .3s, */
+    /*   scale .5s; */
+  }
+}
+
+@keyframes enableTransition {
+  50% {
+    background: red;
+    transition:
+      visibility 1s 3s,
+      opacity .3s,
+      top .1s 3s,
+      translate 0s,
+      scale .5s;
+  }
+}
+
+label[for=name_input]:after {
+  content: ' ' var(--name_input--value);
+}
+
+input[type=text] {
+  transition: all .2s;
+  width: calc(var(--range_input--target_value) * 1%);
+  font-size: calc(var(--range_input--target_value) * 1px);
+}
+
+h1:after {
+  content: ' ' var(--email_input--target_value_2S);
+}
+
+body {
+  background: var(--bg_input--target_value);
+}
+
+input[type=color]:after {
+  content: 'Color: ' var(--bg-input--target_value_2S);
+}
+
+button#btn {
+  position: fixed;
+  transition: all 10ms;
+  min-width: max-content;
+  left: calc(var(--btn--clientX) * 1px);
+  top: calc(var(--btn--clientY) * 1px);
+  translate: -50% -50%;
+}

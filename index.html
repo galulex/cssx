@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>CSSX</title>
+    <script src="cssx.js"></script>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <h1>Demo</h1>
+    <button id='tooltip' tooltip="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio id inventore hic sapiente vel sunt fugiat ab maxime nam numquam est totam repellendus neque ex magni, veniam rem velit eveniet." data-cssx='mouseenter->clientX,clientY,pageX,pageY,target.offsetLeft,target.offsetTop,target.offsetWidth,target.offsetHeight'>Smart tooltip</button>
+
+    <br>
+    <pre class='language-html'>
+      <code>
+      input id='range_input' type="range" min='5' max='100' step='5' list='range_list' data-cssx='change->target.value'
+      </code>
+    </pre>
+    <label for='name_input'>Control input size with no JS</label>
+    <br>
+    <input id='range_input' type="range" min='5' max='100' step='5' list='range_list' data-cssx='change->target.value'>
+    <datalist id='range_list'>
+      <option value="5">5</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="75">75</option>
+      <option value="100">100</option>
+    </datalist>
+    <br>
+    <input id='email_input' placeholder='Type here' name='name' type="text" data-cssx='change->target.value|change->target.value+'>
+
+    <br>
+    <input id='bg_input' name='bg' type="color" data-cssx='change->target.value+'>
+
+
+    <pre class='language-html'>
+      <code>
+      </code>
+    <button id='btn' data-cssx='mousemove->clientX,clientY,pageX,pageY'>Annoying button</button>
+  </body>
+</html>
