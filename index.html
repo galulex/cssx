@@ -4,17 +4,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>CSSX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.css">
+
+    <link rel="stylesheet" href="/path/to/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <script src="cssx.js"></script>
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
     <h1>Demo</h1>
     <button id='tooltip' tooltip="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio id inventore hic sapiente vel sunt fugiat ab maxime nam numquam est totam repellendus neque ex magni, veniam rem velit eveniet." data-cssx='mouseenter->clientX,clientY,pageX,pageY,target.offsetLeft,target.offsetTop,target.offsetWidth,target.offsetHeight'>Smart tooltip</button>
-
-    <br>
     <pre class='language-html'>
       <code>
-      input id='range_input' type="range" min='5' max='100' step='5' list='range_list' data-cssx='change->target.value'
+        &lt;button id='tooltip' tooltip="Lorem ipsum dolor " data-cssx='mouseenter->clientX,clientY,pageX,pageY,target.offsetLeft,target.offsetTop,target.offsetWidth,target.offsetHeight'&gt;Smart tooltip&lt;/button&gt;
+      </code>
+    </pre>
+
+    <br>
+    <legend>HTML</legend>
+    <pre class='language-html'>
+      <code>
+        &lt;input id='range_input' type="range" min='5' max='100' step='5' list='range_list' data-cssx='change->target.value'&gt;
+      </code>
+    </pre>
+    <legend>CSS</legend>
+    <pre class='language-css'>
+      <code>
+        input[type=text] {
+          transition: all .2s;
+          width: calc(var(--range_input--target_value) * 1%);
+          font-size: calc(var(--range_input--target_value) * 1px);
+        }
       </code>
     </pre>
     <label for='name_input'>Control input size with no JS</label>

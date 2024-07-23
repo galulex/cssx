@@ -32,8 +32,8 @@
     pointer-events: none;
     /* top: 50%; */
     /* left: 50%; */
-    top: calc(var(--tooltip--clientY)*1px + 2%);
-    left: calc(var(--tooltip--clientX)*1px + 2%);
+    top: calc(var(--tooltip--clientY)*1px + 10px);
+    left: calc(var(--tooltip--clientX)*1px + 10px);
     /* right: 0; */
     /* bottom: 0; */
     content: attr(tooltip) !important;
@@ -126,4 +126,8 @@ button#btn {
   left: calc(var(--btn--clientX) * 1px);
   top: calc(var(--btn--clientY) * 1px);
   translate: -50% -50%;
+}
+
+pre {
+  max-width: 100vw;
 }
